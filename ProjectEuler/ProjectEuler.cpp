@@ -9,7 +9,10 @@ int main(void)
 	//Problem_001_bruteforce();
 	//Problem_001();
 
-	Problem_002();
+	//Problem_002();
+
+	Problem_003();
+
 
 
 	std::cin.sync();		// Flush The Input Buffer Just In Case

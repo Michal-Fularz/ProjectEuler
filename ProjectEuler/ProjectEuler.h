@@ -6,4 +6,6 @@ void Problem_001(void);
 
 void Problem_002(void);
 
+void Problem_003(void);
+
 #endif

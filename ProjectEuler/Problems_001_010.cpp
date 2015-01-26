@@ -93,7 +93,63 @@ The prime factors of 13195 are 5, 7, 13 and 29.
 What is the largest prime factor of the number 600851475143 ?
 */
 
+static long findNextPrimeNumber(long currentPrimeNumber)
+{
+	long newPrimeNumber = currentPrimeNumber;
+
+	bool flagNewPrimeNumberFound = false;
+
+	while (!flagNewPrimeNumberFound)
+	{
+		newPrimeNumber++;
+		flagNewPrimeNumberFound = true;
+
+		long upperLimit = newPrimeNumber / 2;
+		if (newPrimeNumber < 4)
+		{
+			upperLimit = newPrimeNumber;
+		}
+		for (int i = 2; i < newPrimeNumber/2; ++i)
+		{
+			if (newPrimeNumber % i == 0)
+			{
+				flagNewPrimeNumberFound = false;
+				break;
+			}
+		}
+	}
+
+	return newPrimeNumber;
+}
+
+#include <list>
+
 void Problem_003(void)
 {
+	long long valueToCheck = 600851475143; // 13195;
 
+	long long currentPrimeNumber = 2;
+
+	list<long long> listOfPrimeFactors;
+
+	// testing findNextPrimeNumber function 
+	/*
+	int primeNumber = 1;
+	for (int i = 0; i < 50; ++i)
+	{
+		primeNumber = findNextPrimeNumber(primeNumber);
+		cout << primeNumber << endl;
+	}
+	*/
+
+	while (currentPrimeNumber <= valueToCheck)
+	{
+		if (0 == (valueToCheck % currentPrimeNumber))
+		{
+			listOfPrimeFactors.push_front(currentPrimeNumber);
+			valueToCheck = valueToCheck / currentPrimeNumber;
+			cout << listOfPrimeFactors.front() << endl;
+		}
+		currentPrimeNumber = findNextPrimeNumber(currentPrimeNumber);	
+	}
 }
