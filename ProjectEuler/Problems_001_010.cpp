@@ -153,3 +153,47 @@ void Problem_003(void)
 		currentPrimeNumber = findNextPrimeNumber(currentPrimeNumber);	
 	}
 }
+
+/*
+Largest palindrome product
+Problem 4
+A palindromic number reads the same both ways. The largest palindrome made from the product of two 2-digit numbers is 9009 = 91 × 99.
+
+Find the largest palindrome made from the product of two 3-digit numbers.
+*/
+
+void Problem_004(void)
+{
+	char valueAsString[7];
+	// bruteforce powa!
+	for (int i = 999; i > 99; --i)
+	{
+		bool flagIsPalindrom = false;
+
+		for (int j = 999; j > 99; --j)
+		{
+			int product = i*j;
+			itoa(product, valueAsString, 10);
+			int length = strlen(valueAsString);
+			flagIsPalindrom = true;
+			for (int k = 0; k < length / 2; ++k)
+			{
+				if (valueAsString[k] != valueAsString[length - (k+1)])
+				{
+					flagIsPalindrom = false;
+					break;
+				}
+			}
+
+			if (flagIsPalindrom)
+			{
+				cout << i << ", " << j << endl;
+				break;
+			}
+		}
+		if (flagIsPalindrom)
+		{
+			break;
+		}
+	}
+}

@@ -8,4 +8,6 @@ void Problem_002(void);
 
 void Problem_003(void);
 
+void Problem_004(void);
+
 #endif
