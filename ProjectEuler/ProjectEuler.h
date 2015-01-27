@@ -20,4 +20,6 @@ void Problem_008(void);
 
 void Problem_009(void);
 
+void Problem_010(void);
+
 #endif

@@ -96,9 +96,9 @@ The prime factors of 13195 are 5, 7, 13 and 29.
 What is the largest prime factor of the number 600851475143 ?
 */
 
-static long findNextPrimeNumber(long currentPrimeNumber)
+static long long findNextPrimeNumber(long long currentPrimeNumber)
 {
-	long newPrimeNumber = currentPrimeNumber;
+	long long newPrimeNumber = currentPrimeNumber;
 
 	bool flagNewPrimeNumberFound = false;
 
@@ -107,12 +107,12 @@ static long findNextPrimeNumber(long currentPrimeNumber)
 		newPrimeNumber++;
 		flagNewPrimeNumberFound = true;
 
-		long upperLimit = newPrimeNumber / 2;
-		if (newPrimeNumber < 4)
+		long long upperLimit = newPrimeNumber / 2;
+		if (newPrimeNumber <= 4)
 		{
 			upperLimit = newPrimeNumber;
 		}
-		for (int i = 2; i < newPrimeNumber/2; ++i)
+		for (int i = 2; i < upperLimit; ++i)
 		{
 			if (newPrimeNumber % i == 0)
 			{
@@ -410,4 +410,36 @@ void Problem_009(void)
 	int c = givenValue - a - b;
 
 	cout << a << ", " << b << ", " << c << endl;
+}
+
+/*
+Summation of primes
+Problem 10
+The sum of the primes below 10 is 2 + 3 + 5 + 7 = 17.
+
+Find the sum of all the primes below two million.
+*/
+
+/*
+Result:
+Project Euler go go go!
+2000003
+142913828922
+*/
+
+void Problem_010(void)
+{
+	const long long TWO_MILIONS_BRO_SERIOUS_SHIT = 2000000;
+	const long long upperBound = TWO_MILIONS_BRO_SERIOUS_SHIT;
+	long long currentPrimeNumber = 2;
+	long long sumOfPrimeNumbers = 0;
+
+	while (currentPrimeNumber < upperBound)
+	{
+		sumOfPrimeNumbers += currentPrimeNumber;
+		currentPrimeNumber = findNextPrimeNumber(currentPrimeNumber);
+	}
+
+	cout << currentPrimeNumber << endl;
+	cout << sumOfPrimeNumbers << endl;
 }
