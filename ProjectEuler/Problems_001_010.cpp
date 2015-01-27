@@ -370,3 +370,44 @@ void Problem_008(void)
 	}
 	cout << endl;
 }
+
+/*
+Special Pythagorean triplet
+Problem 9
+A Pythagorean triplet is a set of three natural numbers, a < b < c, for which,
+
+a^2 + b^2 = c^2
+For example, 3^2 + 4^2 = 9 + 16 = 25 = 5^2.
+
+There exists exactly one Pythagorean triplet for which a + b + c = 1000.
+Find the product abc.
+*/
+
+void Problem_009(void)
+{
+	const int givenValue = 1000;
+	// using the constraints:
+	// a^2 + b^2 = c^2 and a+b+c=1000
+	// following formulas can be found:
+	// c = 1000 - a - b
+	// a = (1000 * (b - 500)) / (b - 1000)
+	// both a and b has to be natural so (1000 * (b-500)) modulo (b-1000) shoule give 0
+
+	int a = 0;
+	int b = 0;
+	for (int i = 1; i < 1000/3; ++i)
+	{
+		int nominator = givenValue * (i - givenValue / 2);
+		int denominator = i - givenValue;
+
+		if ((nominator % denominator) == 0)
+		{
+			a = nominator / denominator;
+			b = i;
+			break;
+		}
+	}
+	int c = givenValue - a - b;
+
+	cout << a << ", " << b << ", " << c << endl;
+}
