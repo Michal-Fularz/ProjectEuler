@@ -10,4 +10,6 @@ void Problem_003(void);
 
 void Problem_004(void);
 
+void Problem_005(void);
+
 #endif
