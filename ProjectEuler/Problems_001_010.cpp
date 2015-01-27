@@ -1,4 +1,4 @@
-#include "ProjectEuler.h"
+﻿#include "ProjectEuler.h"
 
 #include <iostream>
 
@@ -157,7 +157,7 @@ void Problem_003(void)
 /*
 Largest palindrome product
 Problem 4
-A palindromic number reads the same both ways. The largest palindrome made from the product of two 2-digit numbers is 9009 = 91 � 99.
+A palindromic number reads the same both ways. The largest palindrome made from the product of two 2-digit numbers is 9009 = 91 × 99.
 
 Find the largest palindrome made from the product of two 3-digit numbers.
 */
@@ -237,4 +237,36 @@ void Problem_005(void)
 	}
 
 	cout << smallestMultiple << endl;
+}
+
+/*
+Sum square difference
+Problem 6
+The sum of the squares of the first ten natural numbers is,
+
+1^2 + 2^2 + ... + 10^2 = 385
+The square of the sum of the first ten natural numbers is,
+
+(1 + 2 + ... + 10)^2 = 55^2 = 3025
+Hence the difference between the sum of the squares of the first ten natural numbers and the square of the sum is 3025 − 385 = 2640.
+
+Find the difference between the sum of the squares of the first one hundred natural numbers and the square of the sum.
+*/
+
+void Problem_006(void)
+{
+	const int upperBound = 20;
+
+	int sumOfTheSquares = 0;
+	int squareOfTheSum = 0;
+	
+	for (int i = 1; i <= upperBound; i++)
+	{
+		sumOfTheSquares += i*i;
+		squareOfTheSum += i;
+	}
+	squareOfTheSum = pow(squareOfTheSum, 2);
+
+	cout << (sumOfTheSquares - squareOfTheSum) << endl;
+
 }
