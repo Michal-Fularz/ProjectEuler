@@ -16,4 +16,6 @@ void Problem_006(void);
 
 void Problem_007(void);
 
+void Problem_008(void);
+
 #endif
