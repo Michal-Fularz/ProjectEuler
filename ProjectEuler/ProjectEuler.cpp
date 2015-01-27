@@ -17,7 +17,9 @@ int main(void)
 
 	//Problem_005();
 
-	Problem_006();
+	//Problem_006();
+
+	Problem_007();
 
 
 

@@ -260,7 +260,7 @@ void Problem_006(void)
 	int sumOfTheSquares = 0;
 	int squareOfTheSum = 0;
 	
-	for (int i = 1; i <= upperBound; i++)
+	for (int i = 1; i <= upperBound; ++i)
 	{
 		sumOfTheSquares += i*i;
 		squareOfTheSum += i;
@@ -269,4 +269,24 @@ void Problem_006(void)
 
 	cout << (sumOfTheSquares - squareOfTheSum) << endl;
 
+}
+
+/*
+10001st prime
+Problem 7
+By listing the first six prime numbers: 2, 3, 5, 7, 11, and 13, we can see that the 6th prime is 13.
+
+What is the 10 001st prime number?
+*/
+
+void Problem_007(void)
+{
+	const int n = 10001;
+	int nthPrimeNumber = 2;
+
+	for (int i = 0; i < n; ++i)
+	{
+		nthPrimeNumber = findNextPrimeNumber(nthPrimeNumber);
+	}
+	cout << nthPrimeNumber << endl;
 }
