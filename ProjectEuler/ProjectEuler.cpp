@@ -27,7 +27,9 @@ int main(void)
 
 	//Problem_010();
 
-	Problem_011();
+	//Problem_011();
+
+	Problem_012();
 
 
 
