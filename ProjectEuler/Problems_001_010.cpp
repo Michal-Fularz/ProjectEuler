@@ -175,7 +175,7 @@ void Problem_004(void)
 		for (int j = 999; j > 99; --j)
 		{
 			int product = i*j;
-			itoa(product, valueAsString, 10);
+			_itoa(product, valueAsString, 10);
 			int length = strlen(valueAsString);
 			flagIsPalindrom = true;
 			for (int k = 0; k < length / 2; ++k)
@@ -284,7 +284,7 @@ What is the 10 001st prime number?
 void Problem_007(void)
 {
 	const int n = 10001;
-	int nthPrimeNumber = 2;
+	long long nthPrimeNumber = 2;
 
 	for (int i = 0; i < n; ++i)
 	{
@@ -430,7 +430,7 @@ Project Euler go go go!
 
 void Problem_010(void)
 {
-	const long long TWO_MILIONS_BRO_SERIOUS_SHIT = 2000000;
+	const long long TWO_MILIONS_BRO_SERIOUS_SHIT = 200000;// 0;
 	const long long upperBound = TWO_MILIONS_BRO_SERIOUS_SHIT;
 	long long currentPrimeNumber = 2;
 	long long sumOfPrimeNumbers = 0;
@@ -705,9 +705,17 @@ vector<Problem_012_t> AllPossibleMultiplicationsInSet(const vector<Problem_012_t
 	return multiplications;
 }
 
+#include <algorithm>
+#include <Windows.h>
 
 void Problem_012(void)
 {
+	LARGE_INTEGER freq, start, end;
+	double total = 0;
+
+	QueryPerformanceFrequency(&freq);
+	QueryPerformanceCounter(&start);
+
 	Problem_012_t triangularNumber = 0;
 	bool flagFound = false;
 	// iterate through the triangular numbers
@@ -721,20 +729,41 @@ void Problem_012(void)
 		vector<Problem_012_t> factors;
 
 		Problem_012_t value = triangularNumber;
-		Problem_012_t currentFactor = 2;
 		bool flagEnd = false;
+
+		// first find all divisions by 2
+		flagEnd = false;
 		while (!flagEnd)
 		{
-			if (value % currentFactor == 0)
+			if ((value & 1) == 0)
+			{
+				// 2
+				factors.push_back(2);
+				value = value / 2;
+			}
+			else
+			{
+				flagEnd = true;
+			}
+		}
+
+		Problem_012_t currentFactor = 3;
+		
+		// then check all odd numbers starting from 3
+		flagEnd = false;
+		while (!flagEnd)
+		{
+			if ((value % currentFactor) == 0)
 			{
 				factors.push_back(currentFactor);
 				value = value / currentFactor;
 			}
 			else
 			{
-				currentFactor++;
+				currentFactor += 2;
 			}
 
+			// it is not necessary to test (currentFactor > value), eg. value = 41, currentFactor = 41 means that will be 1 so first condition will be sufficient
 			if ((value == 1) || (currentFactor > (triangularNumber / 2)))
 			{
 				flagEnd = true;
@@ -777,28 +806,33 @@ void Problem_012(void)
 		{
 			cout << "Triangular number: " << triangularNumber << endl;
 			
-			cout << "Basic factors: " << endl;
-			for (auto item : factors)
-			{
-				cout << item << ", ";
-			}
-			cout << endl;
+			//cout << "Basic factors: " << endl;
+			//for (auto item : factors)
+			//{
+			//	cout << item << ", ";
+			//}
+			//cout << endl;
 
-			cout << "Factors multiplications: " << endl;
-			for (auto item : multiplications)
-			{
-				cout << item << ", ";
-			}
-			cout << endl;
+			//cout << "Factors multiplications: " << endl;
+			//for (auto item : multiplications)
+			//{
+			//	cout << item << ", ";
+			//}
+			//cout << endl;
 
-			cout << "All factors: " << endl;
-			for (auto item : extendedFactors)
-			{
-				cout << item << ", ";
-			}
-			cout << endl;
+			//cout << "All factors: " << endl;
+			//for (auto item : extendedFactors)
+			//{
+			//	cout << item << ", ";
+			//}
+			//cout << endl;
 
 			flagFound = true;
 		}
 	}
+
+	QueryPerformanceCounter(&end);
+
+	total += (double)(end.QuadPart - start.QuadPart) / freq.QuadPart;
+	cout << "Total time: " << total << endl;
 }
