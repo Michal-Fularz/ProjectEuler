@@ -6,8 +6,9 @@ int main(void)
 {
 	std::cout << "Project Euler go go go!" << std::endl;
 
-	//Problem_001_bruteforce();
-	//Problem_001();
+	Problem_001_bruteforce();
+	Problem_001_bruteforce_optimized();
+	Problem_001();
 
 	//Problem_002();
 
@@ -29,7 +30,7 @@ int main(void)
 
 	//Problem_011();
 
-	Problem_012();
+	//Problem_012();
 
 
 

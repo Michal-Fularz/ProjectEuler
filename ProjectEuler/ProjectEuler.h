@@ -1,7 +1,8 @@
-#ifndef __PROJECT_EULER_H__
-#define __PROJECT_EULER_H__
+#ifndef PROJECT_EULER_H_
+#define PROJECT_EULER_H_
 
 void Problem_001_bruteforce(void);
+void Problem_001_bruteforce_optimized(void);
 void Problem_001(void);
 
 void Problem_002(void);
@@ -26,4 +27,4 @@ void Problem_011(void);
 
 void Problem_012(void);
 
-#endif
+#endif // PROJECT_EULER_H_
