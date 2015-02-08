@@ -78,6 +78,7 @@
   <ItemGroup>
     <ClCompile Include="Problems_001_010.cpp" />
     <ClCompile Include="Problems_011_020.cpp" />
+    <ClCompile Include="Problems_other.cpp" />
     <ClCompile Include="ProjectEuler.cpp" />
     <ClCompile Include="SupportFunctions.cpp" />
   </ItemGroup>

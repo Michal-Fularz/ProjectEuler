@@ -27,4 +27,8 @@ void Problem_011(void);
 
 void Problem_012(void);
 
+void Problem_499(void);
+
+void Problem_500(void);
+
 #endif // PROJECT_EULER_H_

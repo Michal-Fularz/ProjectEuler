@@ -22,7 +22,7 @@ int main(void)
 
 	//Problem_007();
 
-	Problem_008();
+	//Problem_008();
 
 	//Problem_009();
 
@@ -30,7 +30,11 @@ int main(void)
 
 	//Problem_011();
 
-	//Problem_012();
+	Problem_012();
+
+	//Problem_499();
+
+	Problem_500();
 
 
 

@@ -8,8 +8,11 @@
 
 #include <algorithm>
 #include <numeric>
+#include <functional>
 
 #include <string>
+
+#include <Windows.h>
 
 #include "SupportFunctions.h"
 
@@ -221,7 +224,7 @@ std::vector<std::vector<int>> GeneratePermutations(int lowValue, int highValue)
 	return permutations;
 }
 
-typedef unsigned long long Problem_012_t;
+typedef uint64_t Problem_012_t;
 
 Problem_012_t Multiplication(const std::vector<Problem_012_t>& data, int index, int maxIndex)
 {
@@ -259,6 +262,7 @@ std::vector<Problem_012_t> AllPossibleMultiplicationsInSet(const std::vector<Pro
 				else
 				{
 					flagAddValue = false;
+					break;
 				}
 			}
 
@@ -271,9 +275,6 @@ std::vector<Problem_012_t> AllPossibleMultiplicationsInSet(const std::vector<Pro
 
 	return multiplications;
 }
-
-#include <algorithm>
-#include <Windows.h>
 
 void Problem_012(void)
 {
@@ -293,8 +294,8 @@ void Problem_012(void)
 		i++;
 
 		// 1 is special case factor! - take it into account
-		std::vector<Problem_012_t> factors;
-		factors.reserve(100);
+		std::vector<Problem_012_t> basicFactors;
+		basicFactors.reserve(100);
 
 		Problem_012_t value = triangularNumber;
 		bool flagEnd = false;
@@ -306,7 +307,7 @@ void Problem_012(void)
 			if ((value & 1) == 0)
 			{
 				// 2
-				factors.push_back(2);
+				basicFactors.push_back(2);
 				value = value / 2;
 			}
 			else
@@ -318,13 +319,13 @@ void Problem_012(void)
 		Problem_012_t currentFactor = 3;
 
 		// then check all odd numbers starting from 3
-		int conditionValue = (triangularNumber >> 1);
+		Problem_012_t conditionValue = (triangularNumber >> 1);
 		// it is not necessary to test (currentFactor > value), eg. value = 41, currentFactor = 41 means that will be 1 so first condition will be sufficient
 		while (!((value == 1) || (currentFactor > conditionValue)))
 		{
 			if ((value % currentFactor) == 0)
 			{
-				factors.push_back(currentFactor);
+				basicFactors.push_back(currentFactor);
 				value = value / currentFactor;
 			}
 			else
@@ -333,10 +334,10 @@ void Problem_012(void)
 			}
 		}
 
-		std::vector<Problem_012_t> multiplications = AllPossibleMultiplicationsInSet(factors, triangularNumber / 2);
+		std::vector<Problem_012_t> extendedFactors = AllPossibleMultiplicationsInSet(basicFactors, triangularNumber / 2);
 
-		factors.push_back(1);
-		factors.push_back(triangularNumber);
+		basicFactors.push_back(1);
+		basicFactors.push_back(triangularNumber);
 
 		// first idea to generate two elements permutations - longer were problematic with this approach
 		// then add all available permutations
@@ -353,38 +354,38 @@ void Problem_012(void)
 		//	}
 		//}
 
-		std::set<Problem_012_t> extendedFactors;
+		std::set<Problem_012_t> uniqueFactors;
 		// copy all factors (without dupilcates) to set
-		for (auto item : factors)
+		for (auto item : basicFactors)
 		{
-			extendedFactors.insert(item);
+			uniqueFactors.insert(item);
 		}
 		// copy all multiplications of factors (without dupilcates) to set
-		for (auto item : multiplications)
+		for (auto item : extendedFactors)
 		{
-			extendedFactors.insert(item);
+			uniqueFactors.insert(item);
 		}
 
-		if (extendedFactors.size() >= 100)
+		if (uniqueFactors.size() >= 100)
 		{
 			cout << "Triangular number: " << triangularNumber << endl;
 
 			//cout << "Basic factors: " << endl;
-			//for (auto item : factors)
+			//for (auto item : basicFactors)
 			//{
 			//	cout << item << ", ";
 			//}
 			//cout << endl;
 
 			//cout << "Factors multiplications: " << endl;
-			//for (auto item : multiplications)
+			//for (auto item : extendedFactors)
 			//{
 			//	cout << item << ", ";
 			//}
 			//cout << endl;
 
 			//cout << "All factors: " << endl;
-			//for (auto item : extendedFactors)
+			//for (auto item : uniqueFactors)
 			//{
 			//	cout << item << ", ";
 			//}

@@ -195,7 +195,7 @@ void Problem_004(void)
 		for (int j = 999; j > 99; --j)
 		{
 			int product = i*j;
-			_itoa(product, valueAsString, 10);
+			_itoa_s(product, valueAsString, 10);
 			int length = strlen(valueAsString);
 			flagIsPalindrom = true;
 			for (int k = 0; k < length / 2; ++k)
